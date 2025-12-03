@@ -11,7 +11,7 @@ variable "mage_interface_disable_api_termination" {
     default = true
 }
 variable "mage_interface_vpc_security_group_ids" {
-    default = "sg-05d8d9380629ad735" 
+    default = ["sg-05d8d9380629ad735"]
 }
 variable "mage_interface_count" {
     default = 4
