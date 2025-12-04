@@ -6,6 +6,7 @@ resource "aws_instance" "hayabusa" {
      key_name = var.hayabusa_key_name
      disable_api_termination = var.hayabusa_disable_api_termination
 
+
 }
 
 resource "aws_security_group" "hanabi" {
