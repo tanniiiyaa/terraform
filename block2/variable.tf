@@ -8,7 +8,7 @@ variable "hayabusa_key_name" {
     default = "nana"
 }
 variable "hayabusa_vpc_security_group_ids" {
-    default = ["sg-05d8d9380629ad735"]
+    default = "sg-05d8d9380629ad735"
 }
 variable "hayabusa_disable_api_termination" {
     default = false
