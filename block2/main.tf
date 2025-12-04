@@ -1,7 +1,7 @@
 resource "aws_instance" "hayabusa" {
 
      ami = var.hayabusa_ami
-     vpc_security_group_ids = [var.hayabusa_vpc_security_group_ids , aws_security_group.hanabi.id ]
+     vpc_security_group_ids = [var.hayabusa_vpc_security_group_ids , aws_security_group.hanabi.id  ]
      instance_type = var.hayabusa_instance_type
      key_name = var.hayabusa_key_name
      disable_api_termination = var.hayabusa_disable_api_termination
