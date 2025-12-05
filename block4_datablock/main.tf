@@ -3,8 +3,7 @@ resource "aws_instance" "ps2" {
     instance_type = var.ps2_instance_type
     key_name = var.ps2_key_name
     vpc_security_group_ids = [var.ps2_vpc_security_group_ids , aws_security_group.vcom.id , data.aws_security_group.data_vcom_sg.id ]
-   disable_api_termination = var.webserver_disable_api_termination
-    disable_api_termination = 
+    disable_api_termination = var.ps2_disable_api_termination
 
     user_data = <<-EOF
                 #!/bin/bash
