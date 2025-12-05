@@ -7,7 +7,7 @@ variable "ps2_instance_type" {
 }
 
 variable "ps2_key_name" {
-  default = "new"
+  default = "nana"
 }
 
 variable "ps2_vpc_security_group_ids" {
