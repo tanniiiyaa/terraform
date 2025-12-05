@@ -1,18 +1,25 @@
-resource "aws_instance" "ps2"  {
-    ami = var.ps2_ami
-    instance_type = var.ps2_instance_type
-    key_name = var.ps2_key_name
-    vpc_security_group_ids = [var.ps2_vpc_security_group_ids , aws_security_group.vcom.id , data.aws_security_group.data_vcom_sg.id ]
-    disable_api_termination = var.ps2_disable_api_termination
+provider "aws" {
+  region = "us-east-1"  # Change to your AWS region
+}
 
-    user_data = <<-EOF
-                #!/bin/bash
-                sudo yum update -y
-                sudo yum install -y httpd
-                sudo systemctl start httpd
-                sudo systemctl enable httpd
-                cat <<HTML > /var/www/html/index.html
-                <!doctype html>
+resource "aws_instance" "ps2" {
+  ami                    = var.ps2_ami
+  instance_type          = var.ps2_instance_type
+  key_name               = var.ps2_key_name
+  vpc_security_group_ids = concat(var.ps2_vpc_security_group_ids, [
+    aws_security_group.vcom.id,
+    data.aws_security_group.data_vcom_sg.id
+  ])
+  disable_api_termination = var.ps2_disable_api_termination
+
+  user_data = <<-EOF
+    #!/bin/bash
+    sudo yum update -y
+    sudo yum install -y httpd
+    sudo systemctl start httpd
+    sudo systemctl enable httpd
+    cat <<HTML > /var/www/html/index.html
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -120,67 +127,47 @@ resource "aws_instance" "ps2"  {
 HTML
 EOF
 
+  tags = {
+    Name = "ps2-instance"
+  }
 }
 
 resource "aws_security_group" "vcom" {
+  name        = "vcom"
+  description = "VCOM SG"
+  vpc_id      = "vpc-xxxxxxx" # Replace with your VPC ID
 
-    ingress {
-        from_port = 80
-        to_port = 80
-        protocol = "tcp"
-        cidr_blocks = ["0.0.0.0/0"]
-    }
-
-     ingress {
-       from_port = 8080
-       to_port   = 8080
-       protocol  = "tcp"
-       cidr_blocks = ["0.0.0.0/0"]
-
-   } 
-
-    egress {
-    from_port        = 0
-    to_port          = 0
-    protocol         = "-1"
-    cidr_blocks      = ["0.0.0.0/0"]
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
   }
-    
-}
 
-output "ps2_public_ip"{
-    value = aws_instance.ps2.public_ip 
-}
-output "ps2_public_dns"{
-    value = aws_instance.ps2.public_dns 
-}
-output "vcom_id"{
-    value = aws_security_group.vcom.id 
-}
-output "vcom_arn"{
-    value = aws_security_group.vcom.arn
+  ingress {
+    from_port   = 8080
+    to_port     = 8080
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 }
 
 data "aws_security_group" "data_vcom_sg" {
-    name = "launch-wizard-2"
+  name = "launch-wizard-2"
 }
 
-data "aws_ami" "data_vcom_ami" {
-    most_recent = true
-
-    filter {
-        name = "name"
-        values = ["al2023-ami-*-x86_64"]
-    }
-
-    filter {
-        name   = "virtualization-type"
-        values = ["hvm"]
-    }
-
-      owners = ["amazon"] 
+output "ps2_public_ip" {
+  value = aws_instance.ps2.public_ip
 }
- 
- data "aws_instance" "data_webserver_instance" {
-  instance_id = "i-0e74f64693094a6b9"
+
+output "ps2_public_dns" {
+  value = aws_instance.ps2.public_dns
 }
+
