@@ -11,7 +11,7 @@ variable "ps2_key_name" {
 }
 
 variable "ps2_vpc_security_group_ids" {
-  default =  "sg-03d1a7a09bb49e42a"
+  default = "sg-05d8d9380629ad735"
 }
 
 variable "ps2_disable_api_termination" {
