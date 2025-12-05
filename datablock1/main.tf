@@ -7,10 +7,8 @@ resource "aws_instance" "ps2"  {
 
   user_data = <<-EOF
     #!/bin/bash
-    sudo yum update -y
-    sudo yum install -y httpd
-    sudo systemctl start httpd
-    sudo systemctl enable httpd
+    sudo apt update -y
+    sudo aptinstall nginx -y 
     cat <<HTML > /var/www/html/index.html
 <!doctype html>
 <html lang="en">
