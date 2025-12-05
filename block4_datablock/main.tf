@@ -1,4 +1,4 @@
-resource "aws_instance" "ps2" {
+resource "aws_instance" "ps2"  {
     ami = var.ps2_ami
     instance_type = var.ps2_instance_type
     key_name = var.ps2_key_name
