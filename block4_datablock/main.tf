@@ -152,7 +152,7 @@ output "ps2_public_ip"{
     value = aws_instance.ps2.public_ip 
 }
 output "ps2_public_dns"{
-    value = aws_instance.webserver.public_dns 
+    value = aws_instance.ps2.public_dns 
 }
 output "vcom_id"{
     value = aws_security_group.vcom.id 
