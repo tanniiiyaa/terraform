@@ -149,16 +149,16 @@ resource "aws_security_group" "vcom" {
 }
 
 output "ps2_public_ip"{
-    value =
+    value = aws_instance.ps2.public_ip 
 }
 output "ps2_public_dns"{
-    value =
+    value = aws_instance.webserver.public_dns 
 }
 output "vcom_id"{
-    value =
+    value = aws_security_group.vcom.id 
 }
 output "vcom_arn"{
-    value =
+    value = aws_security_group.vcom.arn
 }
 
 data "aws_security_group" "data_vcom_sg" {
