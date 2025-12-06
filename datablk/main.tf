@@ -8,8 +8,8 @@ resource "aws_instance" "webserver" {
 
   user_data = <<-EOT
                  #!/bin/bash
-                 sudo apt update -y
-                 sudo apt install nginx -y
+                 sudo yum update -y
+                 sudo yum install nginx -y
                  cat <<HTML >/var/www/html/index.html
                  <html>
                   <h1> THIS PRACTICAL ANNOYED THE HELL OUTTA ME, BYE <h1>
@@ -17,8 +17,8 @@ resource "aws_instance" "webserver" {
                  <html>
                  HTML
                  
-                 systemctl restart nginx
-                 systemctl enable nginx
+                 sudo systemctl restart nginx
+                 sudo systemctl enable nginx
 
                  EOT
 
