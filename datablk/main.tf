@@ -10,7 +10,8 @@ resource "aws_instance" "webserver" {
                  #!/bin/bash
                  sudo yum update -y
                  sudo yum install nginx -y
-                 cat <<HTML >/var/www/html/index.html
+                 cat <<HTML >/usr/share/nginx/html/index.html
+
                  <html>
                   <h1> THIS PRACTICAL ANNOYED THE HELL OUTTA ME, BYE <h1>
                   <h2> - tan sama <h2>
