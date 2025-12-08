@@ -11,12 +11,11 @@ data "aws_subnets" "default" {
   }
 }
 
-# Create Internet Gateway for default VPC
-resource "aws_internet_gateway" "default_igw" {
-  vpc_id = data.aws_vpc.default.id
-
-  tags = {
-    Name = "default-igw"
+# Use existing Internet Gateway of the default VPC
+data "aws_internet_gateway" "default_igw" {
+  filter {
+    name   = "attachment.vpc-id"
+    values = [data.aws_vpc.default.id]
   }
 }
 
@@ -26,7 +25,7 @@ resource "aws_route_table" "public_rt" {
 
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.default_igw.id
+    gateway_id = data.aws_internet_gateway.default_igw.id
   }
 
   tags = {
@@ -34,7 +33,7 @@ resource "aws_route_table" "public_rt" {
   }
 }
 
-# Associate all default subnets to public route table
+# Associate all default subnets with public route table
 resource "aws_route_table_association" "public_assoc" {
   for_each       = toset(data.aws_subnets.default.ids)
   subnet_id      = each.value
@@ -60,6 +59,10 @@ resource "aws_security_group" "web_sgroup" {
     to_port     = 0
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "web-sg1"
   }
 }
 
@@ -116,7 +119,7 @@ resource "aws_launch_template" "example" {
   )
 }
 
-
+# Auto Scaling Group
 resource "aws_autoscaling_group" "asg" {
   desired_capacity          = 2
   max_size                  = 3
