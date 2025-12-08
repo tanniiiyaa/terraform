@@ -8,7 +8,7 @@ resource "aws_instance" "ps2"  {
   user_data = <<-EOF
     #!/bin/bash
     sudo apt update -y
-    sudo aptinstall nginx -y 
+    sudo apt install nginx -y 
     cat <<HTML > /var/www/html/index.html
 <!doctype html>
 <html lang="en">
