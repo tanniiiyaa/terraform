@@ -1,4 +1,4 @@
-variable "webserver ami" {
+variable "webserver_ami" {
 
 
 }
@@ -23,5 +23,5 @@ variable "webserver_subnetA" {
 
 variable "webserver_sg" {
 
-    
+
 }
