@@ -1,4 +1,4 @@
-/*
+
 resource "aws_instance" "webserver" {
     ami = var.webserver_ami
     instance_type = var.webserver_instance_type
@@ -16,4 +16,4 @@ resource "aws_instance" "webserver" {
         echo "<h1> V strom </h1>" > /var/www/html/index.html
     EOF
 }
-*/
+
