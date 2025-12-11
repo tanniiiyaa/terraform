@@ -1,5 +1,5 @@
 terraform {
-    backend = "s3" {
+    backend "s3" {
         bucket = "tf-demo-buckyy"
         key = "terraform.tfstate"
         dynamodb_table = "dynao-demo"
