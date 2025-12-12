@@ -1,3 +1,8 @@
+provider "aws" {
+    region = "eu-north-1"
+    profile = "configs"
+}
+
 #This block creates two identical EC2 instances using the same AMI.
 
 resource "aws_instance" "onion" {
