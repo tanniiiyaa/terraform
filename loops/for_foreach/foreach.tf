@@ -21,7 +21,7 @@ resource "aws_iam_user" "iam" {
 }
 
 variable = "iamrole" {
-    default = [ "ming" , "mini" , "meow" ]
+    default = [ "ming" , "mini" , "meoww" ]
 }
 
 output "aws_id" {
