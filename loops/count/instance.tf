@@ -18,7 +18,3 @@ resource "aws_instance" "tomato" {
     ami = var.ami_list[count.index]
     count = length(var.ami_list) 
 }
-
-variable "ami_list" {
-    default = [ "ami-0b46816ffa1234887" , "ami-0fa91bc90632c73c9" ]
-}
