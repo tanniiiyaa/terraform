@@ -14,7 +14,7 @@ resource "aws_instance" "onion" {
 ## Creates multiple EC2 instances, each with a different AMI, using count and list indexing.
 
 resource "aws_instance" "tomato" {
-    instance_type = "t3_micro"
+    instance_type = "t3.micro"
     ami = var.ami_list[count.index]
     count = length(var.ami_list) 
 }
