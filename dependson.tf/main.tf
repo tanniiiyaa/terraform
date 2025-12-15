@@ -1,7 +1,7 @@
 #instance
 resource "aws_instance" "alpha" {
     ami = var.ami_fox.ami_id
-    instance_type = var.any_fox.instancetype_fox[1]
+    instance_type = var.any_fox.instance_type_list[1]
     key_name = var.any_fox.keyname_fox
     count = var.count_fox
 }
