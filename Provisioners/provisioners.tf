@@ -9,7 +9,7 @@ resource "aws_instance" "ginger" {
     key_name = "new"
     vpc_security_group_ids = [ "sg-05d8d9380629ad735" ]
 
-    provisioner "file" {
+    provisioner "file" { 
         source = "textdata.txt"
         destination = "/home/ec2-user/aws/"
     }
