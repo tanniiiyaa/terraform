@@ -13,7 +13,7 @@ resource "aws_instance" "webserver" {
         sudo apt install nginx
         sudo systemctl start nginx
         sudo systemctl enable nginx
-        echo "<h1> V strom </h1>" > /var/www/html/index.html
+        echo "<h1> Hello this is nana </h1>" > /var/www/html/index.html
     EOF
 }
 
