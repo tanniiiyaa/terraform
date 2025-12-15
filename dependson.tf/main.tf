@@ -16,7 +16,7 @@ resource "aws_instance" "beta" {
 #security groups
 
 resource "aws_security_group" "sg" {
-    depends on [aws_instance.alpha]
+    depends_on =  [aws_instance.alpha]
     ingress {
         from_port = 80
         to_port = 80
