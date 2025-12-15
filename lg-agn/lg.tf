@@ -11,7 +11,7 @@ data "aws_subnets" "default" {
   }
 }
 
-# Use existing Internet Gateway of the default VPC
+# Use existing Internet Gateway (IGW) of the default VPC
 data "aws_internet_gateway" "default_igw" {
   filter {
     name   = "attachment.vpc-id"

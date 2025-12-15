@@ -6,6 +6,7 @@ terraform {
         region = "eu-north-1"
         dynamodb_table = "createddbb"
         encrypt =  true
+        
     }
 }
 
