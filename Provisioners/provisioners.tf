@@ -1,3 +1,8 @@
+provider "aws" {
+    region = "eu-north-1"
+    profile = "configs"
+}
+
 resource "aws_instance" "ginger" {
     instance_type = "t3.micro"
     ami = ami-0b46816ffa1234887
@@ -20,11 +25,12 @@ resource "aws_instance" "ginger" {
     }
 
     provisioner "remote-exec" {
-        inline = [
+    inline = [
 
-            "sudo yum install httpd -y"
-            "sudo systemctl start httpd"
-            "sudo systemctl enable httpd"
-        ]
-    }
-}
+      "sudo yum install httpd -y",
+      "sudo systemctl start httpd",
+      "sudo systemctl enable httpd"
+    ]
+   }
+   
+ }
