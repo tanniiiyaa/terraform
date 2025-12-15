@@ -5,9 +5,9 @@ provider "aws" {
 
 resource "aws_instance" "ginger" {
     instance_type = "t3.micro"
-    ami = ami-0b46816ffa1234887
+    ami = "ami-0b46816ffa1234887"
     key_name = "new"
-    vpc_security_group_ids = "sg-05d8d9380629ad735"
+    vpc_security_group_ids = [ "sg-05d8d9380629ad735" ]
 
     provisioner "file" {
         source = "textdata.txt"
