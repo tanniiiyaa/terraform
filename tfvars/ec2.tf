@@ -3,7 +3,7 @@ provider "aws" {
      profile = "configs"
 }
 
-
+## instance
 resource "aws_instance" "demo" {
          instance_type = var.instance_type
          ami = var.ami
