@@ -31,3 +31,5 @@ output "aws_id" {
         aws_instance.plum[amiid].id
     ]
 }
+
+
